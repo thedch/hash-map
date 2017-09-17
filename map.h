@@ -3,11 +3,13 @@
 typedef int bool;
 enum { false, true }; // Create a data type to nicely represent booleans
 
-// typedef struct HashMap HashMap;
+typedef struct HashMap HashMap;
 struct HashMap {
-  float size;
-  // int* map[MAP_SIZE];
+  // float size;
+  int* map[MAP_SIZE];
 };
+
+unsigned long getHash(unsigned char *str);
 
 // return an instance of the class with pre-allocated space for the given number of objects.
 struct HashMap constructor(int size);

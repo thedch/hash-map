@@ -3,7 +3,6 @@
 
 #include "map.h"
 
-
 unsigned long getHash(unsigned char *str) {
   unsigned long hash = 5381;
   int c;
@@ -16,12 +15,13 @@ unsigned long getHash(unsigned char *str) {
 
 struct HashMap constructor(int size) {
   struct HashMap h;
-  // h.size = size;
   return h;
 }
 
 bool set(char* key, int value) {
   unsigned long hash = getHash(key);
+  hash = hash % 100;
+  // need to pass the hash map in at this point... or is there a better way?
 }
 
 
