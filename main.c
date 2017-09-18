@@ -5,13 +5,16 @@ int main() {
     printf("Welcome to the hash map.\n");
 
     HashMap h = constructor(10);
-    set("hello", 5, &h);
-    int value = get("hello", h);
-    printf("%d\n", value);
+    int input = 5;
+    set("hello", &input, &h);
+    int* value = get("hello", h);
+    printf("%d\n", *value);
+
+    printf("%.2f\n", load(h));
+    printf("%d\n", MAP_SIZE);
+    printf("%d\n", h.currentItems);
 
     value = delete("hello", &h);
-    printf("%d\n", value);
-    value = get("hello", h);
-    printf("%d\n", value);
+    printf("%d\n", *value);
 
 }
