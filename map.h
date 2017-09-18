@@ -1,4 +1,4 @@
-#define MAP_SIZE 100
+// TODO header gaurds?
 
 typedef int bool;
 enum { false, true }; // Create a data type to nicely represent booleans
@@ -7,7 +7,8 @@ typedef struct HashMap HashMap;
 struct HashMap {
   int size;
   int currentItems;
-  int** map; // array of int pointers
+  // TODO create a custom struct for each value, and get a pointer to that
+  void** map;
 };
 
 unsigned long getHash(unsigned char *str);

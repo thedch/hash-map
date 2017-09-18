@@ -26,7 +26,7 @@ struct HashMap constructor(int size) {
 
 bool set(char* key, int* value, HashMap* h) {
   unsigned long hash = getHash((unsigned char*) key);
-  hash = hash % 100;
+  hash = hash % h->size;
   h->map[hash] = value;
   // TODO ensure key is unique
   h->currentItems++;
@@ -35,7 +35,7 @@ bool set(char* key, int* value, HashMap* h) {
 
 int* get(char* key, HashMap h) { // TODO Return pointer to custom arbitrary struct?
   unsigned long hash = getHash((unsigned char*) key);
-  hash = hash % 100;
+  hash = hash % h.size;
   if (h.map[hash] == NULL) {
     printf("Attempting to access a null value.\n");
     return NULL;
@@ -46,7 +46,7 @@ int* get(char* key, HashMap h) { // TODO Return pointer to custom arbitrary stru
 // delete the value associated with the given key, returning the value on success or null if the key has no value.
 int* delete(char* key, HashMap* h) {
   unsigned long hash = getHash((unsigned char*) key);
-  hash = hash % 100;
+  hash = hash % h->size;
   int* value = h->map[hash];
   h->map[hash] = NULL;
   // TODO only decrement if key existed
@@ -59,6 +59,7 @@ float load(HashMap h) {
   float load = h.currentItems / (float) h.size; // cast as float to avoid integer division
   return load;
 }
+
 
 bool keyExists(char* key, HashMap h) {
   // TODO write this and use in delete() and set()
