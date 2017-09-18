@@ -11,7 +11,7 @@ int main() {
     printf("%d\n", *value);
 
     printf("%.2f\n", load(h));
-    printf("%d\n", MAP_SIZE);
+    printf("%d\n", h.size);
     printf("%d\n", h.currentItems);
 
     value = delete("hello", &h);

@@ -5,8 +5,9 @@ enum { false, true }; // Create a data type to nicely represent booleans
 
 typedef struct HashMap HashMap;
 struct HashMap {
+  int size;
   int currentItems;
-  int* map[MAP_SIZE];
+  int** map; // array of int pointers
 };
 
 unsigned long getHash(unsigned char *str);

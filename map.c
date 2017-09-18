@@ -2,6 +2,7 @@
 // Date: Sept 16 2017
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "map.h"
 
 unsigned long getHash(unsigned char *str) { // http://www.cse.yorku.ca/~oz/hash.html
@@ -17,7 +18,9 @@ unsigned long getHash(unsigned char *str) { // http://www.cse.yorku.ca/~oz/hash.
 
 struct HashMap constructor(int size) {
   struct HashMap h;
+  h.size = size;
   h.currentItems = 0;
+  h.map = malloc(size * sizeof(int*));
   return h;
 }
 
@@ -25,6 +28,7 @@ bool set(char* key, int* value, HashMap* h) {
   unsigned long hash = getHash((unsigned char*) key);
   hash = hash % 100;
   h->map[hash] = value;
+  // TODO ensure key is unique
   h->currentItems++;
   return true;
 }
@@ -45,12 +49,17 @@ int* delete(char* key, HashMap* h) {
   hash = hash % 100;
   int* value = h->map[hash];
   h->map[hash] = NULL;
+  // TODO only decrement if key existed
   h->currentItems--;
   return value;
 }
 
 // return a float value representing the load factor (items in hash map)/(size of hash map) of the data structure. Since the size of the data structure is fixed, this should never be greater than 1.
 float load(HashMap h) {
-  float load = h.currentItems / (float) MAP_SIZE; // cast as float to avoid integer division
+  float load = h.currentItems / (float) h.size; // cast as float to avoid integer division
   return load;
+}
+
+bool keyExists(char* key, HashMap h) {
+  // TODO write this and use in delete() and set()
 }
